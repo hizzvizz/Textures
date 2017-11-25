@@ -1,0 +1,57 @@
+<!--
+Circle Spin / Arc by @rubenalexander -> https://steemit.com/@rubenalexander
+Github -> https://github.com/hizzvizz/CirclePatterns
+-->
+
+<html>
+	<body bgcolor="black">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+		<script>
+			// The drawing function uses a for loop to place circles based on the trig functions sinx_, cosx_, and tanx_
+			
+			function color_rand(_counter, mod1, max) {
+				var _r =  ( _counter * mod1 ) % max;
+				return _r;
+			}
+			
+			function drawing(y_axis) {
+				var _max = 1500;	// max number of iterations
+				var _counter = 0,amp=0, freq=0;	// _counter initialized
+				var _step = 1;		// _step for increased spacing in the circles.
+				
+				for ( _counter = 0 ; _counter < _max ; _counter = _counter + _step) {  
+					amp = 100;
+					freq = 10;
+					
+					//var sinx_ = amp * Math.sin(_counter*freq) + (_counter % 100);
+					var alt_y = 50*Math.random();
+			
+					// Document write statements, create svg code to draw vectors in the html document
+					document.write("<g transform=translate(10,"+ y_axis + ") rotate(0)>")
+					document.write("<circle cx=" + _counter + " cy=" + alt_y + " r=1 stroke-width=1 nofill "); 	
+					
+					_r = color_rand(_counter, .9, 255);
+					_g = color_rand(_counter, 1.9, 255);
+					_b = color_rand(_counter, .5, 255);
+					
+					document.write("style='stroke:rgb(" + _r + "," + _g + "," + _b + "') />");
+		
+					document.write("</g>")
+					
+				}
+			}
+			// The following svg tags set up the space where the vectors will be drawn.
+			document.write("<svg xmlns=svg xmlns:xlink=http://www.w3.org/2000/svg width=1400 height=800>");
+			var botton_window = 1000;
+			var step_out = 10;
+			for( var index=100 ; index < botton_window ; index += step_out) {
+					drawing(index);
+				}
+			document.write("</svg>");
+			
+		</script>
+
+
+	</body>
+</html>
