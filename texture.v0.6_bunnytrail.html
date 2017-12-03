@@ -1,0 +1,92 @@
+<!--
+Circle Spin / Arc by @rubenalexander -> https://steemit.com/@rubenalexander
+Github -> https://github.com/hizzvizz/CirclePatterns
+-->
+
+<html>
+	<body bgcolor="black">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+		<script>
+			// The drawing function uses a for loop to place circles based on the trig functions sinx_, cosx_, and tanx_
+			
+			function color_rand(_counter, mod1, max) {
+				var _r =  ( _counter * mod1 ) % max;
+				return _r;
+			}
+			
+			function drawing(y_axis) {
+				var _max = 500;	// max number of iterations
+				var _counter = 0;	// _counter initialized
+				var _step = 5;		// _step for increased spacing in the circles.
+				var _fudge = 0;
+				var alt_y=0;
+				var h=0;
+				var _array = [200,300,300,400,600,400,500,1000,1000,500];
+				var _index=0;
+				var cursorX;
+				var cursorY;
+				document.onmousemove = function(e){
+					cursorX = e.pageX;
+					cursorY = e.pageY;
+				}
+				
+				for ( _counter = 0 ; _counter < _max ; _counter = _counter + _step) {  
+						
+						//freq = 1;
+						
+						//var sinx_ = amp * Math.sin(_counter*freq) + (_counter % 100);
+						
+						alt_y = 230*Math.random();
+											
+						// adds a wave to the start of the graphic
+						
+						y_axis += (_counter % 20)*Math.sin(_counter*.05)*Math.cos(_counter*.01);
+						//y_axis = (cursorX)*Math.sin(_counter*(cursorY));
+						
+						
+						// Document write statements, create svg code to draw vectors in the html document
+						document.write("<g transform=translate(10,"+ y_axis + ") rotate(0)>")
+						//_index = 0;
+						
+						for (_fudge=0;  _fudge < _max ; _fudge += _step) {
+						//for (_index=0,_index < 10; _index++)	
+						//Strong jitter
+							
+							//_fudge = _counter + (200*Math.sin(_counter));
+							
+					
+							h +=100*Math.sin(_counter - _fudge);
+							//h = h * _array[_index];
+							
+							//Weird Scatter
+							//_fudge += _counter;
+							
+							
+							document.write("<circle cx=" + _fudge + " cy=" + h + " r=1 stroke-width=1 nofill "); 	
+							
+							_r = color_rand(_counter, _counter, 255);
+							_g = color_rand(_counter, _counter, 210);
+							_b = color_rand(_counter, _counter, 104);
+							
+							document.write("style='stroke:rgb(" + _r + "," + _g + "," + _b + "') />");
+						}
+				
+						document.write("</g>")
+						
+				}
+			}
+			// The following svg tags set up the space where the vectors will be drawn.
+			document.write("<svg xmlns=svg xmlns:xlink=http://www.w3.org/2000/svg width=1600 height=900>");
+			var botton_window = 700;
+			var step_out = 100;
+			for( var index = 0 ; index < botton_window ; index += step_out) {
+					drawing(index);
+			}
+			document.write("</svg>");
+			
+		</script>
+
+
+	</body>
+</html>
