@@ -1,6 +1,6 @@
 <!--
-Circle Spin / Arc by @rubenalexander -> https://steemit.com/@rubenalexander
-Github -> https://github.com/hizzvizz/CirclePatterns
+Textures by @rubenalexander -> https://steemit.com/@rubenalexander
+Github -> https://github.com/hizzvizz/Textures
 -->
 
 <html>
@@ -29,26 +29,11 @@ Github -> https://github.com/hizzvizz/CirclePatterns
 				var _freq =0;
 				var _freq_adj=0;
 				for ( _counter = _max ; _counter > 0; _counter -= _y_step) {  
-						
 		
-											
-						// adds a wave to the start of the graphic
-						
-						//y_axis += 100*Math.sin(_counter*1);
-						
-						
-						
-						// Document write statements, create svg code to draw vectors in the html document
 						document.write("<g transform=translate(10,"+ _counter + ") rotate(0)>")
-
-						
-						
-						
+					
 						for (_fudge=0;  _fudge < _max ; _fudge += _x_step) {
 
-							
-			
-							
 							if (_counter < 300) {
 								h = 50*Math.sin(_fudge*(.05 + (_fudge/(_fudge+1))));
 							} else if (_counter >= 300 && _counter < 600) {
@@ -57,8 +42,7 @@ Github -> https://github.com/hizzvizz/CirclePatterns
 								h = 40*Math.tan(_fudge*.001);
 							}
 							
-							
-							
+				
 							document.write("<circle cx=" + _fudge + " cy=" + h + " r=1 stroke-width=1 nofill "); 	
 							
 							// _g = color_rand(_counter, _fudge, 210); for a trippy color effect.
@@ -77,7 +61,6 @@ Github -> https://github.com/hizzvizz/CirclePatterns
 			// The following svg tags set up the space where the vectors will be drawn.
 			document.write("<svg xmlns=svg xmlns:xlink=http://www.w3.org/2000/svg width=1600 height=900>");
 
-			
 			drawing();
 			
 			document.write("</svg>");
