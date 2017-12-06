@@ -1,0 +1,67 @@
+<!--
+Textures by @rubenalexander -> https://steemit.com/@rubenalexander
+Github -> https://github.com/hizzvizz/Textures
+-->
+
+<html>
+	<body bgcolor="black">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+		<script>
+			// The drawing function uses a for loop to place circles based on the trig functions sinx_, cosx_, and tanx_
+			
+			function color_rand(_counter, mod1, max) {
+				var _r =  ( _counter * mod1 ) % max;
+				return _r;
+			}
+			
+			function drawing() {
+				var _max = 700;	// max number of iterations
+				var _counter = 0;	// _counter initialized
+				var _x_step = 2;		// _step for increased spacing in the circles.
+				var _y_step = 5;
+				var _fudge = 0;
+				var alt_y=0;
+				var h=0;
+				var _arr = [];
+				var _index=0;
+				var y_axis = 0;
+				var _array_minion=0;
+
+				for ( _counter = _max ; _counter > 0; _counter -= _y_step) {  
+		
+						document.write("<g transform=translate(10,"+ _counter + ") rotate(0)>")
+						
+						for (_fudge=0 ; _fudge < _max ; _fudge += _x_step) {
+							
+								_arr[_fudge] = 50*Math.sin(_fudge*.05);					
+								_arr[_fudge] -= 50*Math.sin(_fudge*.5);
+							
+							
+							document.write("<circle cx=" + _fudge + " cy=" + _arr[_fudge] + " r=1 stroke-width=1 nofill "); 	
+							
+							// _g = color_rand(_counter, _fudge, 210); for a trippy color effect.
+							
+							_r = color_rand(_counter, _counter, 255);
+							_g = color_rand(_fudge, _counter, 140);
+							_b = color_rand(_counter, _fudge, 104);
+							
+							document.write("style='stroke:rgb(" + _r + "," + _g + "," + _b + "') />");
+						}
+				
+						document.write("</g>")
+						
+				}
+			}
+			// The following svg tags set up the space where the vectors will be drawn.
+			document.write("<svg xmlns=svg xmlns:xlink=http://www.w3.org/2000/svg width=1600 height=900>");
+
+			drawing();
+			
+			document.write("</svg>");
+			
+		</script>
+
+
+	</body>
+</html>
