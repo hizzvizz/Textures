@@ -1,0 +1,78 @@
+<html>
+	<body bgcolor="black">
+		<script>
+			// The drawing function uses a for loop to place circles based on the trig functions sinx_, cosx_, and tanx_
+			
+			function color_rand(_counter, mod1, max) {
+				var _r =  (_counter + mod1) % max;
+				return _r;
+			}
+			
+			function drawing() {
+				var _max = 500;	// max number of iterations
+				var _counter = 0;	// _counter initialized
+				var _x_step = 1;		// _step for increased spacing in the circles.
+				var _y_step = 2;
+				var _fudge = 0;
+				var alt_y=0;
+				var _arr = [];
+				var _index=0;
+				var y_axis = 0;
+				var _toggle_var=0;
+				var _random_g=0;
+				var _random_b=0;
+				
+				_random_r = Math.floor(255*Math.random());
+				_random_b = Math.floor(255*Math.random());
+				_random_g = Math.floor(255*Math.random());
+							
+				for ( _counter = _max ; _counter > 0; _counter -= _y_step) {  
+							document.write("<g transform=translate(10,"+ _counter + ") rotate(0) clip-path=url(#cut-circle)>")
+							_arr[0] = 10;
+							
+							for (_fudge=1 ; _fudge < _max ; _fudge += _x_step) {
+								
+								if (_counter % 21 == 0) {
+									_arr[_fudge] = _arr[_fudge-1] + 10*Math.random()*Math.sin(2*_fudge);
+									_r = color_rand(_counter, _counter, 255);
+									_g = color_rand(_counter, _counter, 255);
+									_b = color_rand(_counter, _counter, 255);
+									
+									//_counter += 30;
+								}
+								
+								if (_counter % 3 == 0) {
+									_toggle_var = 50;
+								} else {
+									_toggle_var = 0;
+								}
+								_r = color_rand(_counter, _counter, 190-_fudge +_toggle_var); // GLORY SUN EFFECT
+								//_r = color_rand(_counter, _counter, _random_r +_toggle_var);
+								_g = color_rand(_counter, _counter, _random_g +_toggle_var);
+								_b = color_rand(_counter, _counter, _random_b +_toggle_var);		
+								
+								document.write("<circle cx=" + _fudge + " cy=" + _arr[_fudge] + " r=" + 1*Math.random() + " stroke-width=1 nofill "); 	
+
+								document.write("style='stroke:rgb(" + _r + "," + _g + "," + _b + "') />");
+							}
+					
+							document.write("</g>")
+				}
+			}
+			// The following svg tags set up the space where the vectors will be drawn.
+			document.write("<svg xmlns=svg xmlns:xlink=http://www.w3.org/2000/svg width=1600 height=900>");
+			/*document.write("<defs>");
+			document.write("<clipPath id=cut-circle>");
+			document.write("<circle cx=0 cy=0 r=500 />");
+			document.write("</clipPath>");
+			document.write("</defs>"); */
+			drawing();
+			drawing();
+			//drawing();
+			document.write("</svg>");
+			
+		</script>
+
+
+	</body>
+</html>
